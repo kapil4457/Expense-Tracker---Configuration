@@ -1,0 +1,4 @@
+-- Create databases
+CREATE DATABASE IF NOT EXISTS userservice;
+CREATE DATABASE IF NOT EXISTS authservice;
+CREATE DATABASE IF NOT EXISTS expenseservice;

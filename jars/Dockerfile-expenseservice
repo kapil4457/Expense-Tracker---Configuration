@@ -1,0 +1,5 @@
+
+FROM amazoncorretto:21
+MAINTAINER kapil4457
+COPY ./expense-service.jar .
+ENTRYPOINT ["java","-jar","expense-service.jar"]
