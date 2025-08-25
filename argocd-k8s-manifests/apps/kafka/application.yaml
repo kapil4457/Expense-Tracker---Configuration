@@ -8,7 +8,7 @@ spec:
   source:
     repoURL: "https://github.com/kapil4457/Expense-Tracker---Configuration.git"
     targetRevision: main
-    path: argocd-k8s-manifests/kafka
+    path: argocd-k8s-manifests/apps/kafka
   destination:
     server: https://kubernetes.default.svc
     namespace: expense-tracker
