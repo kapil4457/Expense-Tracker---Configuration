@@ -31,7 +31,7 @@ spec:
             ]
       containers:
         - name: auth-service
-          image: kapil4457/expense-tracker-auth-service:2b6127669257536e3c4b3974beb9f6a80e789d77
+          image: kapil4457/expense-tracker-auth-service:0f8a5363c3d5e70bc7a23a57912c6c46159de7bd
           ports:
             - containerPort: 9898
           env:
