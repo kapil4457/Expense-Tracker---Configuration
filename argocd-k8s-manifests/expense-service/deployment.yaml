@@ -31,7 +31,7 @@ spec:
             ]
       containers:
         - name: expense-service
-          image: kapil4457/expense-tracker-expense-service:22e71a072e6a6882039d039e847f407ca275ad94
+          image: kapil4457/expense-tracker-expense-service:c9ed4deb4db3ca58f4a1fa940649d86ff7fbb262
           ports:
             - containerPort: 9820
           env:
