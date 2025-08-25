@@ -1,0 +1,44 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: kong-config
+data:
+  kong.yaml: |
+    _format_version: "3.0"
+    _transform: true
+
+    services:
+      - name: expense-service
+        url: http://expense-service:9820
+        routes:
+          - name: expense-route
+            paths:
+              - /expense/v1
+            strip_path: false
+            preserve_host: false
+        plugins:
+          - name: custom-auth
+            config:
+              auth_service_url: "http://auth-service:9898/auth/v1/ping"
+
+      - name: data-science-service
+        url: http://ds-service:8010
+        routes:
+          - name: ds-route
+            paths:
+              - /v1/ds
+            strip_path: false
+            preserve_host: false
+        plugins:
+          - name: custom-auth
+            config:
+              auth_service_url: "http://auth-service:9898/auth/v1/ping"
+
+      - name: auth-service
+        url: http://auth-service:9898
+        routes:
+          - name: auth-route
+            paths:
+              - /auth/v1
+            strip_path: false
+            preserve_host: false

@@ -1,0 +1,57 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: user-service
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: user-service
+  template:
+    metadata:
+      labels:
+        app: user-service
+    spec:
+      initContainers:
+        - name: wait-for-mysql
+          image: busybox
+          command:
+            [
+              "sh",
+              "-c",
+              "until nc -z mysql 3306; do echo waiting for mysql; sleep 2; done;",
+            ]
+        - name: wait-for-kafka
+          image: busybox
+          command:
+            [
+              "sh",
+              "-c",
+              "until nc -z kafka 9092; do echo waiting for kafka; sleep 2; done;",
+            ]
+      containers:
+        - name: user-service
+          image: kapil4457/expense-tracker-user-service:26e5212c10c67336e5885c1a8e02140b5b4b3d8e
+          ports:
+            - containerPort: 9810
+          env:
+            - name: MYSQL_HOST
+              value: "mysql"
+            - name: MYSQL_PORT
+              value: "3306"
+            - name: MYSQL_DB
+              value: "userservice"
+            - name: MYSQL_USER
+              valueFrom:
+                secretKeyRef:
+                  name: mysql-secret
+                  key: mysql-root-user
+            - name: MYSQL_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: mysql-secret
+                  key: mysql-root-password
+            - name: KAFKA_HOST
+              value: "kafka"
+            - name: KAFKA_PORT
+              value: "9092"

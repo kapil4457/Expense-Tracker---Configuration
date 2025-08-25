@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: expense-service
+spec:
+  ports:
+    - port: 9820
+      targetPort: 9820
+  selector:
+    app: expense-service

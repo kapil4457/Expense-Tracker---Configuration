@@ -1,0 +1,26 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: expense-tracker-root
+  namespace: argocd
+spec:
+  project: default
+
+  source:
+    repoURL: "https://github.com/kapil4457/Expense-Tracker---Configuration.git"
+    targetRevision: main
+    path: argocd-k8s-manifests/apps
+
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: argocd
+
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
+
+  directory:
+    recurse: true

@@ -1,0 +1,46 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ds-service
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: ds-service
+  template:
+    metadata:
+      labels:
+        app: ds-service
+    spec:
+      initContainers:
+        - name: wait-for-mysql
+          image: busybox
+          command:
+            [
+              "sh",
+              "-c",
+              "until nc -z mysql 3306; do echo waiting for mysql; sleep 2; done;",
+            ]
+        - name: wait-for-kafka
+          image: busybox
+          command:
+            [
+              "sh",
+              "-c",
+              "until nc -z kafka 9092; do echo waiting for kafka; sleep 2; done;",
+            ]
+      containers:
+        - name: ds-service
+          image: kapil4457/expense-tracker-data-science-service:3e65e891f7d0f50d5f28e8964ce02ae77d9c2b40
+          ports:
+            - containerPort: 8010
+          env:
+            - name: KAFKA_HOST
+              value: "kafka"
+            - name: KAFKA_PORT
+              value: "9092"
+            - name: OPENAI_API_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: mistralai-secret
+                  key: api-key
