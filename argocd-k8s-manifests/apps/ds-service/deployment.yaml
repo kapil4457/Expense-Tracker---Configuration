@@ -31,7 +31,7 @@ spec:
             ]
       containers:
         - name: ds-service
-          image: kapil4457/expense-tracker-data-science-service:3e65e891f7d0f50d5f28e8964ce02ae77d9c2b40
+          image: kapil4457/expense-tracker-data-science-service:a128931cca14a1ba910956f7e4f1a593ef05da25
           ports:
             - containerPort: 8010
           env:
