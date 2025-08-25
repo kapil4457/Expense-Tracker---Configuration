@@ -31,7 +31,7 @@ spec:
             ]
       containers:
         - name: user-service
-          image: kapil4457/expense-tracker-user-service:794db03a1c26f17317478f7c462942cb24617cca
+          image: kapil4457/expense-tracker-user-service:1b67bb3b13f6fc99c3a46c098ca97c687efe6fa1
           ports:
             - containerPort: 9810
           env:
