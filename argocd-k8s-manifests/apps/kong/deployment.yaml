@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: kong-service
 spec:
-  replicas: 3
+  replicas: 1
   selector:
     matchLabels:
       app: kong-service
@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: kong
-          image: kong-expense-tracker:latest
+          image: kapil4457/expense-tracker-kong-service:latest
           ports:
             - containerPort: 8000
             - containerPort: 8001
