@@ -31,7 +31,7 @@ variable "public_subnet_cidrs" {
 variable "cluster_name" {
   description = "Name of the EKS cluster"
   type        = string
-  default     = "my-eks-cluster"
+  default     = "expense-tracker-cluster"
 }
 
 variable "cluster_version" {
