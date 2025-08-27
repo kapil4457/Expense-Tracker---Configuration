@@ -4,18 +4,22 @@ metadata:
   name: kong-service
 spec:
   type: NodePort
-  ports:
-    - port: 8000
-      targetPort: 8000
-      nodePort: 30080
-    - port: 8001
-      targetPort: 8001
-      nodePort: 30081
-    - port: 8443
-      targetPort: 8443
-      nodePort: 30443
-    - port: 8444
-      targetPort: 8444
-      nodePort: 30444
   selector:
     app: kong-service
+  ports:
+    - name: proxy
+      port: 8000
+      targetPort: 8000
+      nodePort: 30080
+    - name: admin
+      port: 8001
+      targetPort: 8001
+      nodePort: 30081
+    - name: proxy-ssl
+      port: 8443
+      targetPort: 8443
+      nodePort: 30443
+    - name: admin-ssl
+      port: 8444
+      targetPort: 8444
+      nodePort: 30444
