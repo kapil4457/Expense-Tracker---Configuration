@@ -4,9 +4,11 @@ metadata:
   name: kafka
 spec:
   ports:
-    - port: 9092
+    - name: kafka-broker
+      port: 9092
       targetPort: 9092
-    - port: 29092
+    - name: kafka-internal
+      port: 29092
       targetPort: 29092
   selector:
     app: kafka
