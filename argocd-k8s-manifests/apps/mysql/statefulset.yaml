@@ -44,7 +44,7 @@ spec:
       volumes:
         - name: mysql-initdb
           configMap:
-            name: mysql-initdb-config
+            name: mysql-initdb
   volumeClaimTemplates:
     - metadata:
         name: mysql-data
