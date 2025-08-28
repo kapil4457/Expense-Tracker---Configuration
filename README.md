@@ -6,6 +6,8 @@ expense-related message is detected, the service extracts relevant information
 (like amount, merchant) using `Mistral AI` and stores it in a database for easy
 tracking.
 
+**Youtube Walkthrough** : https://youtu.be/xm4FmjVSvs4
+
 ## Microservices
 
 ### Auth Service
