@@ -50,3 +50,7 @@ tracking.
 ## Architecture Diagram
 
 ![alt text](architecture-diagram.png)
+
+## Flow Diagram
+
+![alt text](flow-diagram.png)
